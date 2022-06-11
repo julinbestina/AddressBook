@@ -3,23 +3,27 @@ package com.bridgelabz.addressbook;
 public class AddressBook {
     public String firstName;
     public String lastName;
-    public String state;
-    public String city;
-    public int zip;
-    public long phoneNumber;
-    public String email;
     public String address;
+    public String city;
+    public String state;
+    public int zip;
+    public String email;
+    public long phoneNumber;
 
 
-    public AddressBook(String firstName, String lastName, String state, String city, int zip, long phoneNumber, String email, String address) {
+    public AddressBook(String firstName, String lastName, String address, String city, String state, int zip, String email, long phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.state = state;
-        this.city = city;
-        this.zip = zip;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
         this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public AddressBook() {
+
     }
 
     @Override
@@ -27,12 +31,12 @@ public class AddressBook {
         return "AddressBook{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", state='" + state + '\'' +
-                ", city='" + city + '\'' +
-                ", zip=" + zip +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", email='" + email + '\'' +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 }
