@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class AddressBook<E> implements IAddressBook {
     Scanner sc = new Scanner(System.in);
-    PersonDetails personDetails = new PersonDetails();
+
 
     ArrayList<PersonDetails> address = new ArrayList<>(Arrays.asList((new PersonDetails("Julin Bestina", "A", "Kozhippara", "Palakkad", "Kerala", 678557, "julin.bestina@yahoo.com", 8086904736L)),
             new PersonDetails("Monisha", "A", "ADYAR", "Chennai", "TamilNadu", 600018, "monisha56@gmail.com", 9485623185L),
@@ -17,6 +17,7 @@ public class AddressBook<E> implements IAddressBook {
 
     public void addNewContact() {
 
+        PersonDetails personDetails = new PersonDetails();
         System.out.println("Enter Your First Name: ");
         personDetails.setFirstName(sc.next());
         System.out.println("Enter Your Last Name: ");
@@ -34,6 +35,7 @@ public class AddressBook<E> implements IAddressBook {
         System.out.println("Enter Your Mobile Number: ");
         personDetails.setPhoneNumber(sc.nextLong());
         address.add(personDetails);
+        System.out.println("\nContact added to Address Book");
 
     }
 
