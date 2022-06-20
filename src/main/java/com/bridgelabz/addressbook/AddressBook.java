@@ -37,7 +37,7 @@ public class AddressBook<E> implements IAddressBook {
 
     }
 
-    public void editData() {
+    public void editContact() {
 
         System.out.println("\nEnter First Name of person You want to edit :- ");
         String firstName = sc.next();
@@ -97,6 +97,17 @@ public class AddressBook<E> implements IAddressBook {
             }
         }
         System.out.println("Please enter the correct first name");
+    }
+
+    @Override
+    public void deleteContact() {
+        System.out.println("\nEnter First Name of person You want to delete : ");
+        String firstName = sc.next();
+        for (int i = 0; i < address.size(); i++) {
+            if (address.get(i).getFirstName().equals(firstName)) {
+                address.remove(i);
+            }
+        }
     }
 
 

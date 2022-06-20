@@ -6,12 +6,13 @@ public class AddressBookMain {
     public static void main(String[] args) {
 
         System.out.println("Welcome to Address Book Program");
+        IAddressBook addressBook = new AddressBook();
         Scanner sc = new Scanner(System.in);
         char choice;
-        IAddressBook addressBook = new AddressBook();
+
 
         do {
-            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact");
+            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact");
             int option = sc.nextInt();
 
             switch (option) {
@@ -19,7 +20,10 @@ public class AddressBookMain {
                     addressBook.addNewContact();
                     break;
                 case 2:
-                    addressBook.editData();
+                    addressBook.editContact();
+                    break;
+                case 3:
+                    addressBook.deleteContact();
                     break;
             }
 
