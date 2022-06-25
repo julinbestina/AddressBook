@@ -11,14 +11,14 @@ public class AddressBookMain {
         Scanner sc = new Scanner(System.in);
         char userChoice;
 
-        Map<String, IAddressBook> addressBooksMap = new HashMap<>();
+        Map<String, IAddressBook> addressBooks = new HashMap<>();
         IAddressBook studentsAddressBook = new AddressBook();
         IAddressBook familyAddressBook = new AddressBook();
         IAddressBook officeAddressBook = new AddressBook();
 
-        addressBooksMap.put("Students", studentsAddressBook);
-        addressBooksMap.put("Family", familyAddressBook);
-        addressBooksMap.put("Office", officeAddressBook);
+        addressBooks.put("Students", studentsAddressBook);
+        addressBooks.put("Family", familyAddressBook);
+        addressBooks.put("Office", officeAddressBook);
 
         do {
             System.out.println("Select the AddressBook \n1.Friends \n2.Family \n3.Office");
@@ -28,13 +28,13 @@ public class AddressBookMain {
 
             switch (option) {
                 case 1:
-                    addressBooksMap.get(choice).addNewContact();
+                    addressBooks.get(choice).addNewContact();
                     break;
                 case 2:
-                    addressBooksMap.get(choice).editContact();
+                    addressBooks.get(choice).editContact();
                     break;
                 case 3:
-                    addressBooksMap.get(choice).deleteContact();
+                    addressBooks.get(choice).deleteContact();
                     break;
             }
 
@@ -42,7 +42,7 @@ public class AddressBookMain {
             userChoice = sc.next().toUpperCase().charAt(0);
         } while (userChoice != 'N');
 
-        for (Map.Entry<String, IAddressBook> l : addressBooksMap.entrySet()) {
+        for (Map.Entry<String, IAddressBook> l : addressBooks.entrySet()) {
             System.out.println(l.getKey() + "-" + l.getValue());
         }
 
