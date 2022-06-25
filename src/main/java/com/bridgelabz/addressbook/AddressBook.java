@@ -131,15 +131,16 @@ public class AddressBook implements IAddressBook {
     @Override
     public void searchContact() {
         Map<String, List<PersonDetails>> addressByState = personAddress.stream().collect(Collectors.groupingBy(PersonDetails::getState));
-        System.out.println(addressByState);
+        System.out.println("State wise Address:\n" + addressByState);
+
         Map<String, List<PersonDetails>> addressByCity = personAddress.stream().collect(Collectors.groupingBy(PersonDetails::getCity));
-        System.out.println(addressByCity);
+        System.out.println("City wise Address:\n" + addressByCity);
 
         System.out.println("Enter the city:");
         String city = sc.next();
         personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(n -> System.out.println(n));
-
-
+        long count = personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).count();
+        System.out.println("No. of Persons in city " + city + ":" + count);
     }
 
 
