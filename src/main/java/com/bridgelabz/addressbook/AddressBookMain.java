@@ -16,14 +16,14 @@ public class AddressBookMain {
         IAddressBook familyAddressBook = new AddressBook();
         IAddressBook officeAddressBook = new AddressBook();
 
-        addressBooks.put("Students", studentsAddressBook);
-        addressBooks.put("Family", familyAddressBook);
-        addressBooks.put("Office", officeAddressBook);
+        addressBooks.put("students", studentsAddressBook);
+        addressBooks.put("family", familyAddressBook);
+        addressBooks.put("office", officeAddressBook);
 
         do {
-            System.out.println("Select the AddressBook \n1.Students \n2.Family \n3.Office");
-            String choice = sc.next();
-            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact");
+            System.out.println("Enter the AddressBook \n1.Students \n2.Family \n3.Office");
+            String choice = sc.next().toLowerCase();
+            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact");
             int option = sc.nextInt();
 
             switch (option) {
@@ -36,11 +36,15 @@ public class AddressBookMain {
                 case 3:
                     addressBooks.get(choice).deleteContact();
                     break;
+                case 4:
+                    addressBooks.get(choice).searchContact();
+                    break;
             }
 
             System.out.println("Are you wish to continue:  Y?N");
             userChoice = sc.next().toUpperCase().charAt(0);
         } while (userChoice != 'N');
+
 
         for (Map.Entry<String, IAddressBook> l : addressBooks.entrySet()) {
             System.out.println(l.getKey() + "-" + l.getValue());

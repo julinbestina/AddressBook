@@ -103,7 +103,7 @@ public class AddressBook implements IAddressBook {
                     }
                     System.out.println("Are you wish to edit other Address fields: Y?N");
                     userChoice = sc.next();
-                } while (userChoice.toUpperCase().equals("Y"));
+                } while (userChoice.equalsIgnoreCase("Y"));
                 return;
             }
         }
@@ -124,6 +124,12 @@ public class AddressBook implements IAddressBook {
         System.out.println("Please enter the correct first name");
     }
 
+    @Override
+    public void searchContact() {
+        System.out.println("Enter the city:");
+        String city = sc.next();
+        personAddress.stream().filter(address -> address.getCity().equalsIgnoreCase(city)).forEach(address -> System.out.println(address));
+    }
 
     @Override
     public String toString() {
