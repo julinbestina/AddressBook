@@ -21,7 +21,7 @@ public class AddressBookMain {
         addressBooks.put("Office", officeAddressBook);
 
         do {
-            System.out.println("Select the AddressBook \n1.Friends \n2.Family \n3.Office");
+            System.out.println("Select the AddressBook \n1.Students \n2.Family \n3.Office");
             String choice = sc.next();
             System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact");
             int option = sc.nextInt();
