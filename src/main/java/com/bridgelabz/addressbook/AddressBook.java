@@ -1,9 +1,13 @@
 package com.bridgelabz.addressbook;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook implements IAddressBook {
     Scanner sc = new Scanner(System.in);
@@ -126,10 +130,18 @@ public class AddressBook implements IAddressBook {
 
     @Override
     public void searchContact() {
+        Map<String, List<PersonDetails>> addressByState = personAddress.stream().collect(Collectors.groupingBy(PersonDetails::getState));
+        System.out.println(addressByState);
+        Map<String, List<PersonDetails>> addressByCity = personAddress.stream().collect(Collectors.groupingBy(PersonDetails::getCity));
+        System.out.println(addressByCity);
+
         System.out.println("Enter the city:");
         String city = sc.next();
-        personAddress.stream().filter(address -> address.getCity().equalsIgnoreCase(city)).forEach(address -> System.out.println(address));
+        personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(n -> System.out.println(n));
+
+
     }
+
 
     @Override
     public String toString() {
