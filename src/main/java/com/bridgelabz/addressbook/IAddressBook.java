@@ -11,6 +11,7 @@ public interface IAddressBook {
     public void deleteContact();
    public void searchContact();
     public void sortContactByName();
+    public void sortContactByCityAndState();
 
 
 }

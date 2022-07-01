@@ -138,8 +138,6 @@ PersonDetails personDetails =new PersonDetails();
 
         System.out.println("Enter the city:");
         String city = sc.next();
-        System.out.println("Enter the State:");
-        String state = sc.next();
         personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(System.out::println);
         long count = personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).count();
         System.out.println("No. of Persons in city " + city + ":" + count);
@@ -148,6 +146,12 @@ PersonDetails personDetails =new PersonDetails();
     public void sortContactByName() {
         personAddress.stream().sorted((n1,n2)->n1.getFirstName().compareTo(n2.getFirstName())).forEach(System.out::println);
     }
+
+    public void sortContactByCityAndState() {
+        personAddress.stream().sorted((n1,n2)->n1.getCity().compareTo(n2.getCity()))
+                .sorted((n1,n2)->n1.getState().compareTo(n2.getState())).forEach(System.out::println);
+    }
+
 
     @Override
     public String toString() {
