@@ -23,7 +23,8 @@ public class AddressBookMain {
         do {
             System.out.println("Enter the AddressBook \n1.Students \n2.Family \n3.Office");
             String choice = sc.next().toLowerCase();
-            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact \n5.Display AddressBook");
+            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact \n5.Display AddressBook" +
+                    "\n6.Sort Contact by Name");
             int option = sc.nextInt();
 
             switch (option) {
@@ -41,6 +42,9 @@ public class AddressBookMain {
                     break;
                 case 5:
                     System.out.println(choice + "-" + addressBooks.get(choice));
+                    break;
+                case 6:
+                    addressBooks.get(choice).sortContactByName();
                     break;
             }
 

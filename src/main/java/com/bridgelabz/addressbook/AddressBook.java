@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class AddressBook implements IAddressBook {
     Scanner sc = new Scanner(System.in);
-
+PersonDetails personDetails =new PersonDetails();
 
     List<PersonDetails> personAddress = new ArrayList<>() {{
         add(new PersonDetails("Julin Bestina", "A", "Kozhippara", "Palakkad", "Kerala", 678557, "julin.bestina@yahoo.com", 8086904736L));
@@ -27,9 +27,9 @@ public class AddressBook implements IAddressBook {
 
         System.out.println("Enter Your First Name: ");
         String firstName = sc.next();
-        boolean isPresent = personAddress.stream().findFirst().equals(firstName);
+        boolean isPresent = personAddress.stream().anyMatch(n->n.getFirstName().equalsIgnoreCase(firstName));
 
-        if (isPresent) {
+        if (!isPresent) {
             System.out.println("Enter Your Last Name: ");
             String lastName = sc.next();
             System.out.println("Enter Your Address: ");
@@ -138,11 +138,16 @@ public class AddressBook implements IAddressBook {
 
         System.out.println("Enter the city:");
         String city = sc.next();
-        personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(n -> System.out.println(n));
+        System.out.println("Enter the State:");
+        String state = sc.next();
+        personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(System.out::println);
         long count = personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).count();
         System.out.println("No. of Persons in city " + city + ":" + count);
     }
 
+    public void sortContactByName() {
+        personAddress.stream().sorted((n1,n2)->n1.getFirstName().compareTo(n2.getFirstName())).forEach(System.out::println);
+    }
 
     @Override
     public String toString() {
