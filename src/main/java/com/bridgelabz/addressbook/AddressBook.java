@@ -11,14 +11,7 @@ import java.util.stream.Collectors;
 
 public class AddressBook implements IAddressBook {
     Scanner sc = new Scanner(System.in);
-PersonDetails personDetails =new PersonDetails();
-
-    List<PersonDetails> personAddress = new ArrayList<>() {{
-        add(new PersonDetails("Julin Bestina", "A", "Kozhippara", "Palakkad", "Kerala", 678557, "julin.bestina@yahoo.com", 8086904736L));
-        add(new PersonDetails("Monisha", "A", "ADYAR", "Chennai", "TamilNadu", 600018, "monisha56@gmail.com", 9485623185L));
-        add(new PersonDetails("Sham", "P", "Alathur", "Thrissur", "Kerala", 680741, "sham.158@gmail.com", 9847561235L));
-    }};
-
+    List<PersonDetails> personAddress = new ArrayList<>();
 
     public AddressBook() {
     }
@@ -27,7 +20,7 @@ PersonDetails personDetails =new PersonDetails();
 
         System.out.println("Enter Your First Name: ");
         String firstName = sc.next();
-        boolean isPresent = personAddress.stream().anyMatch(n->n.getFirstName().equalsIgnoreCase(firstName));
+        boolean isPresent = personAddress.stream().anyMatch(n -> n.getFirstName().equalsIgnoreCase(firstName));
 
         if (!isPresent) {
             System.out.println("Enter Your Last Name: ");
@@ -122,6 +115,7 @@ PersonDetails personDetails =new PersonDetails();
 
             if (l.getFirstName().equalsIgnoreCase(firstName)) {
                 personAddress.remove(l);
+                System.out.println("Contact deleted");
                 return;
             }
         }
@@ -139,17 +133,18 @@ PersonDetails personDetails =new PersonDetails();
         System.out.println("Enter the city:");
         String city = sc.next();
         personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).forEach(System.out::println);
+
         long count = personAddress.stream().filter(n -> n.getCity().equalsIgnoreCase(city)).count();
         System.out.println("No. of Persons in city " + city + ":" + count);
     }
 
     public void sortContactByName() {
-        personAddress.stream().sorted((n1,n2)->n1.getFirstName().compareTo(n2.getFirstName())).forEach(System.out::println);
+        personAddress.stream().sorted((n1, n2) -> n1.getFirstName().compareTo(n2.getFirstName())).forEach(System.out::println);
     }
 
     public void sortContactByCityAndState() {
-        personAddress.stream().sorted((n1,n2)->n1.getCity().compareTo(n2.getCity()))
-                .sorted((n1,n2)->n1.getState().compareTo(n2.getState())).forEach(System.out::println);
+        personAddress.stream().sorted((n1, n2) -> n1.getCity().compareTo(n2.getCity())).forEach(System.out::println);
+        personAddress.stream().sorted((n1, n2) -> n1.getState().compareTo(n2.getState())).forEach(System.out::println);
     }
 
 

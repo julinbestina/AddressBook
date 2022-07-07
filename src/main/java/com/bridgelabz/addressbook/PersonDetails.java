@@ -10,7 +10,9 @@ public class PersonDetails {
     private String email;
     private Long phoneNumber;
 
+    public PersonDetails() {
 
+    }
     public PersonDetails(String firstName, String lastName, String address, String city, String state, Integer zip, String email, Long phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -20,10 +22,6 @@ public class PersonDetails {
         this.zip = zip;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public PersonDetails() {
-
     }
 
     public void setFirstName(String firstName) {

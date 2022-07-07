@@ -9,8 +9,11 @@ public interface IAddressBook {
     public void editContact();
 
     public void deleteContact();
-   public void searchContact();
+
+    public void searchContact();
+
     public void sortContactByName();
+
     public void sortContactByCityAndState();
 
 

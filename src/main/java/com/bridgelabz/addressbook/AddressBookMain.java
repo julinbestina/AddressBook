@@ -1,30 +1,39 @@
 package com.bridgelabz.addressbook;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         System.out.println("Welcome to Address Book Program");
         Scanner sc = new Scanner(System.in);
+        AddressBookFile addressBookFile = new AddressBookFile();
+        Map<String, IAddressBook> addressBooks = new HashMap<>();
         char userChoice;
 
-        Map<String, IAddressBook> addressBooks = new HashMap<>();
-        IAddressBook studentsAddressBook = new AddressBook();
-        IAddressBook familyAddressBook = new AddressBook();
-        IAddressBook officeAddressBook = new AddressBook();
+        do {
+            System.out.println("Enter the name of address book you want to create");
+            IAddressBook addressBook = new AddressBook();
+            String addressBookName = sc.next();
+            addressBooks.put(addressBookName, addressBook);
+            System.out.println("Are you wish create address book again:  Y?N");
+            userChoice = sc.next().toUpperCase().charAt(0);
+        } while (userChoice == 'Y');
 
-        addressBooks.put("students", studentsAddressBook);
-        addressBooks.put("family", familyAddressBook);
-        addressBooks.put("office", officeAddressBook);
 
         do {
-            System.out.println("Enter the AddressBook \n1.Students \n2.Family \n3.Office");
-            String choice = sc.next().toLowerCase();
-            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact \n5.Display AddressBook" +
-                    "\n6.Sort Contact by Name \n7.Sort by City and State");
+            System.out.println("Select the AddressBook");
+
+            for (Map.Entry<String, IAddressBook> entry : addressBooks.entrySet()) {
+                System.out.println(entry.getKey());
+            }
+
+            String choice = sc.next();
+            System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact " +
+                    "\n5.Display AddressBook \n6.Sort Contact by Name \n7.Sort by City and State  \n8.Read from and Write in to File");
             int option = sc.nextInt();
 
             switch (option) {
@@ -48,6 +57,10 @@ public class AddressBookMain {
                     break;
                 case 7:
                     addressBooks.get(choice).sortContactByCityAndState();
+                    break;
+                case 8:
+                    addressBookFile.writeAddressToFile(addressBooks);
+                    addressBookFile.readAddressFromFile();
                     break;
             }
 
