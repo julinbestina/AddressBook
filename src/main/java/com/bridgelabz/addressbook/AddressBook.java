@@ -1,12 +1,13 @@
 package com.bridgelabz.addressbook;
 
-import org.w3c.dom.ls.LSOutput;
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AddressBook implements IAddressBook {
@@ -147,6 +148,36 @@ public class AddressBook implements IAddressBook {
         personAddress.stream().sorted((n1, n2) -> n1.getState().compareTo(n2.getState())).forEach(System.out::println);
     }
 
+    public void writeToJsonFile()  {
+        try {
+
+            FileWriter writer = new FileWriter("AddressBook.json");
+            Gson gson = new Gson();
+            String json = gson.toJson(personAddress);
+            writer.write(json);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromJsonFile() {
+        try (Reader reader = Files.newBufferedReader(Paths.get("AddressBook.json"))) {
+            Gson gson = new Gson();
+            ArrayList<PersonDetails> contactList = new ArrayList<>(Arrays.asList(gson.fromJson(reader, PersonDetails[].class)));
+            for (PersonDetails contact : contactList) {
+                System.out.println("Firstname : " + contact.getFirstName());
+                System.out.println("Lastname : " + contact.getLastName());
+                System.out.println("Address : " + contact.getAddress());
+                System.out.println("City : " + contact.getCity());
+                System.out.println("State : " + contact.getState());
+                System.out.println("Zip : " + contact.getZip());
+                System.out.println("Phone number : " + contact.getPhoneNumber());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public String toString() {

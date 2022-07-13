@@ -33,7 +33,8 @@ public class AddressBookMain {
 
             String choice = sc.next();
             System.out.println("Select your Option: \n1.Add new Contact \n2.Edit Contact \n3.Delete Contact \n4.Search Contact " +
-                    "\n5.Display AddressBook \n6.Sort Contact by Name \n7.Sort by City and State  \n8.Read from and Write in to File");
+                    "\n5.Display AddressBook \n6.Sort Contact by Name \n7.Sort by City and State  \n8.Read from and Write in to File " +
+                    " \n9.Read from and Write in to JSON File");
             int option = sc.nextInt();
 
             switch (option) {
@@ -61,6 +62,10 @@ public class AddressBookMain {
                 case 8:
                     addressBookFile.writeAddressToFile(addressBooks);
                     addressBookFile.readAddressFromFile();
+                    break;
+                case 9:
+                    addressBooks.get(choice).writeToJsonFile();
+                    addressBooks.get(choice).readFromJsonFile();;
                     break;
             }
 

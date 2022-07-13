@@ -1,20 +1,22 @@
 package com.bridgelabz.addressbook;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public interface IAddressBook {
-    public void addNewContact();
+    void addNewContact();
 
-    public void editContact();
+    void editContact();
 
-    public void deleteContact();
+    void deleteContact();
 
-    public void searchContact();
+    void searchContact();
 
-    public void sortContactByName();
+    void sortContactByName();
 
-    public void sortContactByCityAndState();
+    void sortContactByCityAndState();
+
+    void writeToJsonFile();
+
+    void readFromJsonFile();
 
 
 }
